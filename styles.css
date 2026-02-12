@@ -743,6 +743,38 @@ body {
         padding: 0 12px;
     }
 
+    .start-questions-container button:nth-child(1) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(2) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(3) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(4) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(5) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(6) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(7) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(8) {
+        width: 100px;
+    }
+
     .start-questions-container {
         gap: 6px;
         margin-top: 3px;
@@ -957,6 +989,38 @@ body {
         padding: 0 15px;
     }
 
+    .start-questions-container button:nth-child(1) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(2) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(3) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(4) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(5) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(6) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(7) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(8) {
+        width: 100px;
+    }
+
     .start-questions-container {
         gap: 8px;
         margin-bottom: 10px;
@@ -1158,6 +1222,38 @@ body {
         gap: 10px;
         margin-bottom: 10px;
         margin-top: 4px;
+    }
+
+    .start-questions-container button:nth-child(1) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(2) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(3) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(4) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(5) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(6) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(7) {
+        width: 100px;
+    }
+
+    .start-questions-container button:nth-child(8) {
+        width: 100px;
     }
 
     .messengers-container {
