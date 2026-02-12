@@ -372,11 +372,6 @@ function showStartQuestions() {
         questionsContainer.appendChild(questionBtn);
     });
     
-    // Добавляем текст про якорные вопросы после кнопок
-    const anchorText = document.createElement('p');
-    anchorText.className = 'anchor-text-small';
-    anchorText.textContent = '*Для чего нужны якорные вопросы? Многие пользователи не знают, с чего начать диалог: о чём спросить и как правильно сформулировать свой вопрос. Чтобы упростить старт общения, мы заранее подготавливаем якорные вопросы — те, которые компания получает чаще всего или которые с высокой вероятностью могут возникнуть у пользователя. Эти вопросы помогают запустить диалог и начать общение. Далее пользователь вовлекается, раскрывается и переходит к своим индивидуальным запросам — для этого предусмотрена кнопка «Задать свой вопрос».';
-    questionsContainer.appendChild(anchorText);
     
     chatMessages.appendChild(questionsContainer);
     adjustChatWindowHeight();
