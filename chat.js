@@ -75,7 +75,7 @@ async function initializeDialog() {
         removeLoadingMessage(loadingId);
         
         // Добавляем ответ бота в чат (с обработкой меток)
-        addBotMessage(botResponse);
+        await addBotMessage(botResponse);
         
         // Добавляем ответ в историю
         messageHistory.push({ role: 'assistant', content: botResponse });
@@ -83,7 +83,7 @@ async function initializeDialog() {
     } catch (error) {
         console.error('Ошибка при инициализации диалога:', error);
         removeLoadingMessage(loadingId);
-        addBotMessage('Здравствуйте! Я Диана, ваш AI-консультант. Чем могу помочь?');
+        await addBotMessage('Здравствуйте! Я Диана, ваш AI-консультант. Чем могу помочь?');
     } finally {
         sendBtn.disabled = false;
         chatInput.disabled = false;
@@ -111,14 +111,11 @@ function initCookieBanner() {
     const acceptBtn = document.getElementById('cookieAcceptBtn');
     if (!banner || !acceptBtn) return;
     
-    if (localStorage.getItem('cookiesAccepted')) {
-        banner.style.display = 'none';
-    } else {
-        banner.style.display = 'flex';
-    }
+    banner.style.display = 'flex';
     
     acceptBtn.addEventListener('click', function() {
-        localStorage.setItem('cookiesAccepted', 'true');
+        // TODO: раскомментировать для продакшена
+        // localStorage.setItem('cookiesAccepted', 'true');
         banner.style.opacity = '0';
         setTimeout(() => { banner.style.display = 'none'; }, 300);
     });
@@ -158,7 +155,7 @@ async function handleSubmit(e) {
         removeLoadingMessage(loadingId);
         
         // Добавляем ответ бота в чат (с обработкой меток)
-        addBotMessage(botResponse);
+        await addBotMessage(botResponse);
         
         // Добавляем ответ в историю
         messageHistory.push({ role: 'assistant', content: botResponse });
@@ -169,7 +166,7 @@ async function handleSubmit(e) {
     } catch (error) {
         console.error('Ошибка при отправке сообщения:', error);
         removeLoadingMessage(loadingId);
-        addBotMessage('Извините, произошла ошибка. Попробуйте еще раз.');
+        await addBotMessage('Извините, произошла ошибка. Попробуйте еще раз.');
     } finally {
         // Разблокируем кнопку отправки
         sendBtn.disabled = false;
@@ -222,7 +219,7 @@ async function sendAndProcessBotResponse() {
         removeLoadingMessage(loadingId);
         
         // Добавляем ответ бота в чат (с обработкой меток)
-        addBotMessage(botResponse);
+        await addBotMessage(botResponse);
         
         // Добавляем ответ в историю
         messageHistory.push({ role: 'assistant', content: botResponse });
@@ -232,7 +229,7 @@ async function sendAndProcessBotResponse() {
     } catch (error) {
         console.error('Ошибка при отправке сообщения:', error);
         removeLoadingMessage(loadingId);
-        addBotMessage('Извините, произошла ошибка. Попробуйте еще раз.');
+        await addBotMessage('Извините, произошла ошибка. Попробуйте еще раз.');
     } finally {
         sendBtn.disabled = false;
         chatInput.disabled = false;
@@ -248,35 +245,92 @@ function addUserMessage(text) {
     scrollToBottom();
 }
 
-// Добавление сообщения бота
-function addBotMessage(text) {
-    // Обрабатываем метки в тексте
+// Задержка для имитации печатания (зависит от длины текста)
+function getTypingDelay(text) {
+    if (!text) return 600;
+    const len = text.length;
+    // Минимум 500мс, ~15мс на символ, максимум 2000мс
+    return Math.min(Math.max(500, len * 15), 2000);
+}
+
+// Задержки для разных типов элементов
+const DELAY = {
+    TEXT: (text) => getTypingDelay(text),   // текстовый пузырёк
+    BUTTONS: 400,                           // кнопки выбора
+    MESSENGER: 400,                         // выбор мессенджера
+    INPUT_FORM: 300,                        // формы ввода
+    GALLERY: 500,                           // галерея
+    START_QUESTIONS: 500,                   // стартовые вопросы
+    ACCEPTED: 300,                          // плашка заявки
+};
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Показать/скрыть индикатор печатания между сообщениями
+function showTypingIndicator() {
+    const id = addLoadingMessage();
+    scrollToBottom();
+    return id;
+}
+
+// Добавление сообщения бота (с задержками)
+async function addBotMessage(text) {
     const processedText = processBotMessage(text);
     
-    // Если есть метки, обрабатываем их
     if (processedText.hasMarkers) {
-        // Добавляем текстовую часть без меток
-        if (processedText.textParts.length > 0) {
-            processedText.textParts.forEach(part => {
-                if (part.trim()) {
-                    const messageDiv = createMessageElement('bot', part);
-                    chatMessages.appendChild(messageDiv);
-                }
-            });
+        // Выводим текстовые части с задержками
+        for (let i = 0; i < processedText.textParts.length; i++) {
+            const part = processedText.textParts[i];
+            if (!part.trim()) continue;
+            
+            const typingId = showTypingIndicator();
+            await sleep(DELAY.TEXT(part));
+            removeLoadingMessage(typingId);
+            
+            const messageDiv = createMessageElement('bot', part);
+            chatMessages.appendChild(messageDiv);
+            adjustChatWindowHeight();
+            scrollToBottom();
         }
         
-        // Обрабатываем метки
-        processedText.markers.forEach(marker => {
+        // Выводим метки с задержками
+        for (const marker of processedText.markers) {
+            const markerType = typeof marker === 'string' ? marker : marker.type;
+            if (markerType === 'MESSAGE_DIVIDER') continue; // уже обработано при разбиении текста
+            
+            let delay = 400;
+            switch (markerType) {
+                case 'START_QUESTIONS': delay = DELAY.START_QUESTIONS; break;
+                case 'BUTTON': delay = DELAY.BUTTONS; break;
+                case 'ASK_MESSENGER': delay = DELAY.MESSENGER; break;
+                case 'NAME_INPUT': delay = DELAY.INPUT_FORM; break;
+                case 'PHONE_INPUT': delay = DELAY.INPUT_FORM; break;
+                case 'REQUEST_ACCEPTED': delay = DELAY.ACCEPTED; break;
+                case 'SHOW_GALLERY': delay = DELAY.GALLERY; break;
+            }
+            
+            const typingId = showTypingIndicator();
+            await sleep(delay);
+            removeLoadingMessage(typingId);
+            
             handleMarker(marker);
-        });
+            adjustChatWindowHeight();
+            scrollToBottom();
+        }
     } else {
-        // Обычное сообщение без меток
-        const messageDiv = createMessageElement('bot', processedText.textParts[0] || text);
+        // Простое сообщение без меток
+        const content = processedText.textParts[0] || text;
+        const typingId = showTypingIndicator();
+        await sleep(DELAY.TEXT(content));
+        removeLoadingMessage(typingId);
+        
+        const messageDiv = createMessageElement('bot', content);
         chatMessages.appendChild(messageDiv);
+        adjustChatWindowHeight();
+        scrollToBottom();
     }
-    
-    adjustChatWindowHeight();
-    scrollToBottom();
 }
 
 // Обработка сообщения бота и извлечение меток
