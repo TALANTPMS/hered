@@ -165,7 +165,7 @@ body {
 
 .connection-button {
     font-family: "Montserrat-SemiBold", sans-serif;
-    background-color: #E56E21;
+    background-color: #587560;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -1143,13 +1143,13 @@ body {
 .price-range {
     font-family: "Montserrat-Bold", sans-serif;
     font-style: italic;
-    color: #E56E21
+    color: #587560
 }
 
 .warrant {
     font-family: "Montserrat-Bold", sans-serif;
     font-style: italic;
-    color: #E56E21
+    color: #587560
 }
 
 .payment {
