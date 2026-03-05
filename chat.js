@@ -1134,45 +1134,45 @@ function getCurrentTime() {
 }
 
 // Прокрутка вниз
-function scrollToBottom() {
-    scrollPageToChatBottom();
-}
+// function scrollToBottom() {
+//     scrollPageToChatBottom();
+// }
 
-function scrollPageToChatBottom() {
-    if (!chatWindow) return;
+// function scrollPageToChatBottom() {
+//     if (!chatWindow) return;
 
-    const chatBottomY = chatWindow.getBoundingClientRect().bottom + window.scrollY;
-    const desiredY = Math.max(0, chatBottomY - window.innerHeight + 16);
-    pageScrollTargetY = desiredY;
+//     const chatBottomY = chatWindow.getBoundingClientRect().bottom + window.scrollY;
+//     const desiredY = Math.max(0, chatBottomY - window.innerHeight + 16);
+//     pageScrollTargetY = desiredY;
 
-    if (pageScrollAnimationFrameId) return;
+//     if (pageScrollAnimationFrameId) return;
 
-    const step = () => {
-        const current = window.scrollY;
-        const distance = pageScrollTargetY - current;
+//     const step = () => {
+//         const current = window.scrollY;
+//         const distance = pageScrollTargetY - current;
 
-        if (Math.abs(distance) < 0.8) {
-            window.scrollTo(0, pageScrollTargetY);
-            pageScrollAnimationFrameId = null;
-            return;
-        }
+//         if (Math.abs(distance) < 0.8) {
+//             window.scrollTo(0, pageScrollTargetY);
+//             pageScrollAnimationFrameId = null;
+//             return;
+//         }
 
-        const isLongScroll = Math.abs(distance) > 520;
-        const factor = isLongScroll ? 0.16 : 0.12;
-        const minStep = isLongScroll ? 1.2 : 0.6;
-        const rawDelta = distance * factor;
-        const delta = Math.sign(distance) * Math.max(minStep, Math.abs(rawDelta));
-        const next = current + delta;
+//         const isLongScroll = Math.abs(distance) > 520;
+//         const factor = isLongScroll ? 0.16 : 0.12;
+//         const minStep = isLongScroll ? 1.2 : 0.6;
+//         const rawDelta = distance * factor;
+//         const delta = Math.sign(distance) * Math.max(minStep, Math.abs(rawDelta));
+//         const next = current + delta;
 
-        window.scrollTo(0, distance > 0
-            ? Math.min(next, pageScrollTargetY)
-            : Math.max(next, pageScrollTargetY));
+//         window.scrollTo(0, distance > 0
+//             ? Math.min(next, pageScrollTargetY)
+//             : Math.max(next, pageScrollTargetY));
 
-        pageScrollAnimationFrameId = requestAnimationFrame(step);
-    };
+//         pageScrollAnimationFrameId = requestAnimationFrame(step);
+//     };
 
-    pageScrollAnimationFrameId = requestAnimationFrame(step);
-}
+//     pageScrollAnimationFrameId = requestAnimationFrame(step);
+// }
 
 // Автоматическое увеличение высоты окна чата
 function adjustChatWindowHeight() {
