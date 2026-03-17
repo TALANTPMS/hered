@@ -734,6 +734,97 @@ body {
     padding: 0 5px;
 }
 
+.input-form-container.phone-capture-form {
+    flex-direction: column !important;
+    align-items: flex-start;
+    gap: 10px !important;
+
+}
+
+.phone-capture-form__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+    align-items: center;
+}
+
+.chat-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 2px;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+}
+
+.chat-consent__checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.chat-consent__checkbox-ui {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #181C18;
+    border-radius: 3px;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.chat-consent__checkbox-ui::after {
+    content: "";
+    width: 9px;
+    height: 5px;
+    border-left: 2px solid #181C18;
+    border-bottom: 2px solid #181C18;
+    transform: rotate(-45deg) scale(0.6) translateY(-1px);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.chat-consent__checkbox:checked + .chat-consent__checkbox-ui::after {
+    opacity: 1;
+    transform: rotate(-45deg) scale(1) translateY(-1px);
+    border-left-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.chat-consent__checkbox:checked + .chat-consent__checkbox-ui {
+    background-color: #2C72C7;
+    border-color: #2C72C7;
+}
+
+.chat-consent__text {
+    font-size: 10px;
+    line-height: 130%;
+    color: #181C18;
+}
+
+.chat-consent__text a {
+    color: #181C18;
+    text-decoration: underline;
+}
+
+.chat-consent__error {
+    min-height: 9px;
+    margin: 0;
+    padding-left: 22px;
+    font-size: 10px;
+    line-height: 120%;
+    color: #d94c4c;
+    text-align: left;
+    width: 100%;
+}
+
 
 
 /* Плашка о принятии заявки */
@@ -1211,6 +1302,31 @@ body {
         padding: 0 12px;
     }
 
+    .chat-consent__checkbox-ui::after {
+        width: 10px;
+        height: 6px;
+    }
+
+
+    .chat-consent__text {
+        font-size: 11px;
+    }
+
+    .chat-consent__error {
+        font-size: 11px;
+        padding-left: 0px;
+    }
+
+    .chat-consent__checkbox-ui {
+        width: 20px;
+        height: 20px;
+    }
+
+    .chat-consent__checkbox {
+        width: 20px;
+        height: 20px;
+    }
+
     .call-modal {
         padding: 34px 10px 14px 10px;
     }
@@ -1587,6 +1703,15 @@ body {
         padding: 0 15px;
     }
 
+    .chat-consent__text {
+        padding-top: 2px;
+        font-size: 12px;
+    }
+
+    .chat-consent__error {
+        font-size: 12px;
+    }
+
     .call-modal__form {
         gap: 8px;
     }
@@ -1910,6 +2035,25 @@ body {
     .wrapper {
         padding: 0 20px;
         max-width: 1200px;
+    }
+
+    .chat-consent__text {
+        font-size: 13px;
+        margin-top: 4px;
+    }
+
+    .chat-consent__error {
+        font-size: 13px;
+    }
+
+    .chat-consent__checkbox-ui {
+        width: 24px;
+        height: 24px;
+    }
+
+    .chat-consent__checkbox {
+        width: 24px;
+        height: 24px;
     }
 
     .call-modal__error {
