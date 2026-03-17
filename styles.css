@@ -723,7 +723,7 @@ body {
     text-align: center;
     border: none;
     border-radius: 100px;
-    background: #D9712A;
+    background: #FFD317;
     box-shadow: 0px -2px 0px rgba(0, 0, 0, 0.3) inset;
     width: 75%;
     height: 44px;
@@ -2868,7 +2868,7 @@ body {
 }
 
 .thanks-title--accent {
-    color: #e10000;
+    color: #FFD317;
 }
 
 .thanks-description {
@@ -2891,7 +2891,7 @@ body {
     line-height: 1;
     color: #fff;
     text-decoration: none;
-    background: #ff001f;
+    background: #FFD317;
     transition: filter 0.2s ease, transform 0.1s ease;
 }
 
