@@ -532,7 +532,7 @@ body {
     width: 36px;
     height: 36px;
     padding: 0;
-    background-color: #FAE780;
+    background-color: #D60036;
     color: white;
     border: none;
     border-radius: 50%;
@@ -551,12 +551,12 @@ body {
 }
 
 .chat-send-btn:hover {
-    background-color: #0056b3;
+    background-color: #fc013f;
     transform: scale(1.05);
 }
 
 .chat-send-btn:active {
-    background-color: #004085;
+    background-color: #fc013f;
     transform: scale(0.95);
 }
 
@@ -1255,7 +1255,7 @@ body {
     font-family: "Montserrat-Regular", sans-serif;
     line-height: 160%;
     color: #ffffff;
-    background-color: #FAE780;
+    background-color: #D60036;
     margin-bottom: 12px;
     padding: 2px 9px 4px 9px;
     border-radius: 8px;
