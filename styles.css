@@ -532,7 +532,7 @@ body {
     width: 36px;
     height: 36px;
     padding: 0;
-    background-color: #203d7f;
+    background-color: #FAE780;
     color: white;
     border: none;
     border-radius: 50%;
@@ -592,8 +592,8 @@ body {
 
 .start-question-btn:hover {
     font-style: bold;
-    background-color: #2C72C7;
-    border: 1px solid #2C72C7;
+    background-color: #D60036;
+    border: 1px solid #D60036;
     color: #ffffff;
 }
 
@@ -625,8 +625,8 @@ body {
 
 .option-button:hover {
     font-family: "Montserrat-SemiBold", sans-serif;
-    background-color: #2C72C7;
-    border: 1px solid #2C72C7;
+    background-color: #D60036;
+    border: 1px solid #D60036;
     color: #ffffff;
 }
 
@@ -659,8 +659,8 @@ body {
 
 .messenger-button:hover {
     font-family: "Montserrat-SemiBold", sans-serif;
-    background-color: #2C72C7;
-    border: 1px solid #2C72C7;
+    background-color: #D60036;
+    border: 1px solid #D60036;
     color: #ffffff;
 }
 
@@ -799,8 +799,8 @@ body {
 }
 
 .chat-consent__checkbox:checked + .chat-consent__checkbox-ui {
-    background-color: #2C72C7;
-    border-color: #2C72C7;
+    background-color: #D60036;
+    border-color: #D60036;
 }
 
 .chat-consent__text {
@@ -1142,7 +1142,7 @@ body {
 }
 
 .cookie-accept-btn:hover {
-    background-color: #ebd469;
+    background-color: #ff89a6;
 }
 
 .cookie-accept-btn:active {
@@ -1255,7 +1255,7 @@ body {
     font-family: "Montserrat-Regular", sans-serif;
     line-height: 160%;
     color: #ffffff;
-    background-color: #203d7f;
+    background-color: #FAE780;
     margin-bottom: 12px;
     padding: 2px 9px 4px 9px;
     border-radius: 8px;
